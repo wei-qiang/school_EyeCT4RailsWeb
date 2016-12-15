@@ -17,6 +17,17 @@ namespace EyeCT4RailsWeb.Controllers
         // GET: Remise
         public ActionResult Index()
         {
+            /*
+            List<Tram> trams = new List<Tram>();
+            trams = tramRepo.GetTrams();
+
+            List<Sector> sectors = new List<Sector>();
+            sectors = sectorRepo.GetAllSectors();
+
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+            dictionary.Add("tramList", trams);
+            dictionary.Add("sectorList", sectors);
+            */
             return View();
         }
 
