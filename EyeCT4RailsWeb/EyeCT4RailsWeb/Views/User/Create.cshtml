@@ -1,0 +1,27 @@
+﻿@using EyeCT4RailsWeb.Models
+@model Gebruiker
+@{
+    ViewBag.Title = "Create new user";
+}
+
+<h2>Create</h2>
+<p>On this page you can add a new user.</p>
+<form method="post">
+    <label>Gebruikersnaam:</label>
+    <input name="Username" value="@Model.Gebruikersnaam" />
+
+    <label>Naam:</label>
+    <input name="Name" value="@Model.Naam" />
+
+    <label>Functie:</label>
+    <select name="Function" value="@Model.Functie">
+        @foreach ()
+        {
+            <option value="@gebruiker.Functie">@gebruiker.Functie</option>
+        }
+    </select>
+
+    <input type="submit" value="Submit" />
+
+</form>
+
