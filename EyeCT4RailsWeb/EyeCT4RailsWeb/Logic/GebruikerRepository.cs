@@ -21,9 +21,9 @@ namespace EyeCT4RailsWeb.Logic
             return context.Verificatie(gebruikersnaam, wachtwoord);
         }
 
-        public bool AddUser(string gebruikersnaam, string naam, string wachtwoord, string functie)
+        public bool AddUser(string gebruikersnaam, string wachtwoord, string functie)
         {
-            return context.GebruikerToevoegen(gebruikersnaam, naam, wachtwoord, functie);
+            return context.GebruikerToevoegen(gebruikersnaam, wachtwoord, functie);
         }
     }
 }
