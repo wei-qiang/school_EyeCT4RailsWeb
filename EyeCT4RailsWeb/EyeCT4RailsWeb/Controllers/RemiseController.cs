@@ -67,5 +67,27 @@ namespace EyeCT4RailsWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Uitrijden(int tram_id = 0)
+        {
+            if (tram_id > 0)
+            {
+                Tram t = tramRepo.GetTramByID(tram_id);
+                //tramRepo.LeaveRemise(t);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Inrijden(int tram_id = 0)
+        {
+            if (tram_id > 0)
+            {
+                Tram t = tramRepo.GetTramByID(tram_id);
+                //tramRepo.DriveIntoRemise(t);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

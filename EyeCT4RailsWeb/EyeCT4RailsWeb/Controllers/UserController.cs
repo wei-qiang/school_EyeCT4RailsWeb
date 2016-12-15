@@ -17,11 +17,11 @@ namespace EyeCT4RailsWeb.Controllers
         {
             return View();
         }
-
+        /*
         public ActionResult AddUser(string gebruikersnaam, string wachtwoord)
         {
             
 
-        }
+        }*/
     }
 }
