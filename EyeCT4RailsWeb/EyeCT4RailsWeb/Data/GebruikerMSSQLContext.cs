@@ -47,7 +47,6 @@ namespace EyeCT4RailsWeb.Data
         {
             return new Gebruiker(
                 Convert.ToString(reader["Gebruikersnaam"]),
-                Convert.ToString(reader["Naam"]),
                 (Functie)Enum.Parse(typeof(Functie), (Convert.ToString(reader["Functie"]))));
         }
 
