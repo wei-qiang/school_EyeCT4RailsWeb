@@ -105,9 +105,29 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\GebruikerMSSQLContext.cs" />
+    <Compile Include="Data\IGebruiker.cs" />
+    <Compile Include="Data\ISectorRepo.cs" />
+    <Compile Include="Data\ITramRepo.cs" />
+    <Compile Include="Data\SectorMSSQLContext.cs" />
+    <Compile Include="Data\TramMSSQLContext.cs" />
+    <Compile Include="Exceptions\RouteGeblokkeerdException.cs" />
+    <Compile Include="Exceptions\TramBestaatException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\GebruikerRepository.cs" />
+    <Compile Include="Logic\SectorRepository.cs" />
+    <Compile Include="Logic\TramRepository.cs" />
+    <Compile Include="Models\Dag.cs" />
+    <Compile Include="Models\Functie.cs" />
+    <Compile Include="Models\Gebruiker.cs" />
+    <Compile Include="Models\Rooster.cs" />
+    <Compile Include="Models\RoosterType.cs" />
+    <Compile Include="Models\Sector.cs" />
+    <Compile Include="Models\Spoor.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Tram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
