@@ -25,8 +25,7 @@ namespace EyeCT4RailsWeb.Data
             {
                 connection.Open();
 
-                string query = "SELECT Gebruikersnaam, Naam, Functie " +
-                    "FROM GEBRUIKER WHERE Gebruikersnaam = @Gebruikersnaam AND Wachtwoord = @Wachtwoord";
+                string query = "SELECT m.Naam, f.Naam FROM MEDEWERKER m, FUNCTIE f WHERE m.Functie_ID = f.ID AND m.Naam = @Gebruikersnaam AND m.Wachtwoord = @Wachtwoord";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Gebruikersnaam", gebruikersnaam);
@@ -48,23 +47,19 @@ namespace EyeCT4RailsWeb.Data
         {
             return new Gebruiker(
                 Convert.ToString(reader["Gebruikersnaam"]),
-                Convert.ToString(reader["Naam"]),
                 (Functie)Enum.Parse(typeof(Functie), (Convert.ToString(reader["Functie"]))));
-
         }
 
-        public bool GebruikerToevoegen(string gebruikersnaam, string naam, string wachtwoord, string functie)
+        public bool GebruikerToevoegen(string gebruikersnaam, string wachtwoord, string functie)
         {
             using (SqlConnection connection = new SqlConnection(connstring))
             {
                 connection.Open();
 
-                string query = "INSERT INTO GEBRUIKER (Gebruikersnaam, Naam, Wachtwoord, Functie) " +
-                    "VALUES (@Gebruikersnaam, @Naam, @Wachtwoord, @Functie)";
+                string query = "INSERT INTO MEDEWERKER(Naam, Wachtwoord, Functie_ID) VALUES('@Gebruikersnaam', '@Wachtwoord', (SELECT f.ID from FUNCTIE f where f.Naam = '@Functie'))";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Gebruikersnaam", gebruikersnaam);
-                    command.Parameters.AddWithValue("@Naam", naam);
                     command.Parameters.AddWithValue("@Wachtwoord", wachtwoord);
                     command.Parameters.AddWithValue("@Functie", functie);
 
@@ -82,13 +77,8 @@ namespace EyeCT4RailsWeb.Data
 
                         throw;
                     }
-
-
-
                 }
             }
-
-
         }
     }
 }

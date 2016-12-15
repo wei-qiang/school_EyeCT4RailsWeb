@@ -10,6 +10,6 @@ namespace EyeCT4RailsWeb.Data
     public interface IGebruiker
     {
         Gebruiker Verificatie(string gebruikersnaam, string wachtwoord);
-        bool GebruikerToevoegen(string gebruikersnaam, string naam, string wachtwoord, string functie);
+        bool GebruikerToevoegen(string gebruikersnaam, string wachtwoord, string functie);
     }
 }
