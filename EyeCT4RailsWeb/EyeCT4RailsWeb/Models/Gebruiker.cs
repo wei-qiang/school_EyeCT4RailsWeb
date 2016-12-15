@@ -20,7 +20,7 @@ namespace EyeCT4RailsWeb.Models
 
         public override string ToString()
         {
-            return Gebruikersnaam + Naam + Functie;
+            return Gebruikersnaam + Functie;
         }
     }
 }
