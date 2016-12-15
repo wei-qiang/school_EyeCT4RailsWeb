@@ -66,7 +66,7 @@ namespace EyeCT4RailsWeb.Data
 
         public Sector GetSectorByID(int ID)
         {
-            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkeren FROM SECTOR s WHERE s.ID = @ID;";
+            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkade FROM SECTOR s WHERE s.ID = @ID;";
             Sector sector = null;
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -90,7 +90,7 @@ namespace EyeCT4RailsWeb.Data
 
         public Sector GetSectorByLijn(int Lijn)
         {
-            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkeren " +
+            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkade " +
                 "FROM SECTOR s, SPOOR sp, SPOOR_LIJN sl WHERE s.Spoor_ID = sp.ID AND sp.ID = sl.Spoor_ID AND s.Blokkeren = 0 AND sl.Lijn_ID = @lijnID;";
             Sector sector = null;
 
@@ -146,7 +146,7 @@ namespace EyeCT4RailsWeb.Data
 
         public int GetSpoorLijn(int spoor)
         {
-            string query = "SELECT sl.Lijn_ID FROM SPOOR_LIJN sl WHERE sl.Spoor_ID = @spoorID;";
+            string query = "SELECT s.nummer FROM spoor s WHERE s.ID = @spoorID;";
             int lijn = 0;
             using (SqlConnection conn = new SqlConnection(connString))
             {

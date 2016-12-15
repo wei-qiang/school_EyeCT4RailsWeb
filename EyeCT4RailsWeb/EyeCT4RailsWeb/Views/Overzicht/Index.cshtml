@@ -1,0 +1,13 @@
+﻿@using EyeCT4RailsWeb.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<ul>
+    @foreach (Tram t in Model)
+    {
+        <li><b>@t.ID</b></li>
+    }
+</ul>
