@@ -17,11 +17,26 @@ namespace EyeCT4RailsWeb.Controllers
         {
             return View();
         }
-
-        public ActionResult AddUser(string gebruikersnaam, string wachtwoord)
+        
+        [HttpPost]
+        public ActionResult Create(string gebruikersnaam, string wachtwoord, string functie)
         {
-            
+            bool adding = GebruikerRepo.AddUser(gebruikersnaam, wachtwoord, functie);
 
+            if (adding == true)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(); // De view die een foutmelding geeft en het opnieuw laat proberen.
+            }
+        }
+        
+        
+        public ActionResult Create()
+        {
+            return View();
         }
     }
 }
