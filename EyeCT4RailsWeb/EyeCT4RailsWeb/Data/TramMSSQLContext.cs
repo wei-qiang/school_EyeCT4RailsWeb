@@ -44,11 +44,12 @@ namespace EyeCT4RailsWeb.Data
 
         /// <summary>
         /// deze methode geeft alle trams terug
+        /// PRIORITEIT VERWIJDERD MOET NOG TERUG!
         /// </summary>
         /// <returns></returns>
         public List<Tram> GetTrams()
         {
-            string query = "SELECT t.ID, tt.Naam, tl.Lijn_ID, t.Sector_ID, t.Status, t.PrioriteitReparatie, t.PrioriteitSchoonmaak FROM TRAM t, TRAMTYPE tt, TRAM_LIJN tl WHERE t.Tramtype_ID = tt.ID AND t.ID = tl.Tram_ID;";
+            string query = "SELECT t.ID, tt.Omschrijving, t.nummer, s.nummer, t.Status FROM TRAM t, TRAMTYPE tt, Sector s WHERE t.Tramtype_ID = tt.ID AND s.Tram_ID = t.ID;";
             List<Tram> tramList = new List<Tram>();
 
             using (SqlConnection conn = new SqlConnection(connString))
@@ -62,24 +63,34 @@ namespace EyeCT4RailsWeb.Data
                         {
                             if (reader.IsDBNull(3))
                             {
-                                tramList.Add(new Tram(reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetInt32(2),
-                                (Status)Enum.Parse(typeof(Status),
-                                reader.GetString(4)),
-                                reader.GetInt32(5),
-                                reader.GetInt32(6)));
+                                int r1 = reader.GetInt32(0);
+                                string r2 = reader.GetString(1);
+                                int r3 = reader.GetInt32(2);
+
+                                tramList.Add(new Tram(r1,
+                                r2,
+                                r3//,
+                                //(Status)Enum.Parse(typeof(Status),
+                                //reader.GetString(4))
+                                //reader.GetInt32(5),
+                                //reader.GetInt32(6)
+                                ));
                             }
                             else
                             {
-                                tramList.Add(new Tram(reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetInt32(2),
-                                reader.GetInt32(3),
-                                (Status)Enum.Parse(typeof(Status),
-                                reader.GetString(4)),
-                                reader.GetInt32(5),
-                                reader.GetInt32(6)));
+                                int r1 = reader.GetInt32(0);
+                                string r2 = reader.GetString(1);
+                                int r3 = reader.GetInt32(2);
+                                int r4 = reader.GetInt32(3);
+                                tramList.Add(new Tram(r1,
+                                r2,
+                                r3,
+                                r4//,
+                                //(Status)Enum.Parse(typeof(Status),
+                                //reader.GetString(4))
+                                //reader.GetInt32(5),
+                                //reader.GetInt32(6)
+                                ));
                             }
                         }
                         return tramList;
@@ -294,22 +305,24 @@ namespace EyeCT4RailsWeb.Data
                             {
                                 tram = new Tram(reader.GetInt32(0),
                                 reader.GetString(1),
-                                reader.GetInt32(2),
-                                (Status)Enum.Parse(typeof(Status),
-                                reader.GetString(4)),
-                                reader.GetInt32(5),
-                                reader.GetInt32(6));
+                                reader.GetInt32(2)//,
+                                //(Status)Enum.Parse(typeof(Status),
+                                //reader.GetString(4)),
+                                //reader.GetInt32(5),
+                                //reader.GetInt32(6)
+                                );
                             }
                             else
                             {
                                 tram = new Tram(reader.GetInt32(0),
                                 reader.GetString(1),
                                 reader.GetInt32(2),
-                                reader.GetInt32(3),
-                                (Status)Enum.Parse(typeof(Status),
-                                reader.GetString(4)),
-                                reader.GetInt32(5),
-                                reader.GetInt32(6));
+                                reader.GetInt32(3)//,
+                                //(Status)Enum.Parse(typeof(Status),
+                                //reader.GetString(4))//,
+                                //reader.GetInt32(5),
+                                //reader.GetInt32(6)
+                                );
                             }
                         }
                         return tram;
