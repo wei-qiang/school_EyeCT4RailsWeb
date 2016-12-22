@@ -4,6 +4,34 @@
 }
 
 <h2>Overzicht van de remise</h2>
+<form method="post" action="/Remise/OverzichtTrams">
+    <label>Overzicht van alle trams:</label>
+    <input type="submit" name="laad_overzicht_trams" value="Overzicht van alle trams" />
+</form>
+
+<div class="row">
+    <div class="col-lg-6">
+        <p>Uirijden van een tram:</p>
+        @Html.Partial("UitrijdenPartialView")
+    </div>
+    <div class="col-lg-6">
+        <p>Inrijden van een tram:</p>
+        @Html.Partial("InrijdenPartialView")
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-6">
+        <p>Blokkeren van een spoor</p>
+        @Html.Partial("BlokkeerSpoorPartialView")
+    </div>
+    <div class="col-lg-6">
+        <p>Verplaatsen van een tram:</p>
+        @Html.Partial("VerplaatsTramPartialView")
+    </div>
+</div>
+<br/>
+
 
 <div class="row">
     <div class="col-lg-1">
@@ -414,15 +442,3 @@
         </table>
     </div>
 </div>
-
-<p>Blokkeren van een spoor</p>
-@Html.Partial("BlokkeerSpoorPartialView")
-<br />
-<p>Verplaatsen van een tram:</p>
-@Html.Partial("VerplaatsTramPartialView")
-<br />
-<p>Uirijden van een tram:</p>
-@Html.Partial("UitrijdenPartialView")
-<br />
-<p>Inrijden van een tram:</p>
-@Html.Partial("InrijdenPartialView")
