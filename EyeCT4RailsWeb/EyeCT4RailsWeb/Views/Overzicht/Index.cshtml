@@ -4,10 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tram Overzicht</h2>
+<br />
+<h3>Status aanpassen</h3>
+@ViewBag.ViewMessage
+<form method="post" action="/Overzicht/ChangeStatus">
+    <label>Tram ID:</label>
+    <br />
+    <input type="number" name="tram_id" min="0" />
+    <br />
+    <label>Nieuwe status:</label>
+    <br />
+    <input type="text" name="status" />
+    <br />
+    <label>Prioriteit:</label>
+    <br />
+    <input type="number" name="Prioriteit" min="0" />
+    <br />
+    <input type="submit" value="Tram inrijden" />
+</form>
+<br />
+
 <table class="table table-striped table table-hover">
     <thead>
         <tr>
+            <th>ID</th>
             <th>tram nummer</th>
             <th>tram type</th>
             <th>spoor nummer</th>
@@ -19,6 +40,7 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.ID</td>
                 <td>@item.TramNummer</td>
                 <td>@item.Tramtype</td>
                 <td>@item.Sector.Spoor</td>
@@ -28,3 +50,4 @@
         }
     </tbody>
 </table>
+

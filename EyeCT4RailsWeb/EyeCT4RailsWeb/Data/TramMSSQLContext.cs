@@ -48,7 +48,7 @@ namespace EyeCT4RailsWeb.Data
         /// <returns></returns>
         public List<Tram> GetTrams()
         {
-            string query = "SELECT t.ID, tt.Omschrijving, t.nummer, t.Status, s.nummer, s.Spoor_Nummer FROM TRAM t, TRAMTYPE tt, Sector s, Spoor sp WHERE t.Tramtype_ID = tt.ID AND s.Tram_ID = t.ID GROUP BY t.ID, tt.Omschrijving, t.nummer, t.Status, s.nummer, s.Spoor_Nummer;";
+            string query = "SELECT t.ID, tt.Omschrijving, t.nummer, t.Status, s.nummer, s.Spoor_Nummer FROM TRAM t LEFT JOIN Sector s ON s.Tram_ID = t.ID JOIN TRAMTYPE tt ON t.Tramtype_ID = tt.ID;";
             List<Tram> tramList = new List<Tram>();
 
             using (SqlConnection conn = new SqlConnection(connString))
@@ -59,14 +59,32 @@ namespace EyeCT4RailsWeb.Data
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
-                        {                           
-                                tramList.Add(new Tram(reader.GetInt32(0),
+                        {
+                            int r4;
+                            int r5;
+                            if (reader.IsDBNull(4))
+                            {
+                                r4 = 0;
+                                    }
+                            else
+                            {
+                                r4 = reader.GetInt32(4);
+                            }
+                            if (reader.IsDBNull(5))
+                            {
+                                r5 = 0;
+                                    }
+                            else
+                            {
+                                r5 = reader.GetInt32(5);
+                            }
+                            tramList.Add(new Tram(reader.GetInt32(0),
                                 reader.GetString(1),
                                 reader.GetInt32(2),
                                 (Status)Enum.Parse(typeof(Status),
                                 reader.GetString(3)),
-                                reader.GetInt32(4),
-                                reader.GetInt32(5)
+                                r4,
+                                r5
                                 ));                       
                         }
                         return tramList;
@@ -83,7 +101,7 @@ namespace EyeCT4RailsWeb.Data
         /// <returns>als het lukt returned het true anders false</returns>
         public bool ChangeStatusTrams(string status, Tram tram)
         {
-            string query = "UPDATE TRAM SET Status = @status,  StatusAangepast = GETDATE() WHERE ID = @tramId;";
+            string query = "UPDATE TRAM SET Status = @status WHERE ID = @tramId;";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -112,7 +130,7 @@ namespace EyeCT4RailsWeb.Data
         /// <returns>returned true als het lukt, false als het niet lukt</returns>
         public bool ChangeSchoonmaakPrioriteitTram(int prioriteit, Tram tram)
         {
-            string query = "UPDATE TRAM SET PrioriteitSchoonmaak = @prioriteit WHERE ID = @tramId;";
+            string query = "UPDATE TRAM SET Vervuild = @prioriteit WHERE ID = @tramId;";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -142,7 +160,7 @@ namespace EyeCT4RailsWeb.Data
         /// <returns></returns>
         public bool ChangeReparatiePrioriteitTram(int prioriteit, Tram tram)
         {
-            string query = "UPDATE TRAM SET PrioriteitReparatie = @prioriteit WHERE ID = @tramId;";
+            string query = "UPDATE TRAM SET Defect = @prioriteit WHERE ID = @tramId;";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {

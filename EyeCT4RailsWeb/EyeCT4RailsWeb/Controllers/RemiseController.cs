@@ -89,5 +89,11 @@ namespace EyeCT4RailsWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult OverzichtTrams()
+        {
+            return new RedirectResult("/Overzicht/Index");
+        }
     }
 }
