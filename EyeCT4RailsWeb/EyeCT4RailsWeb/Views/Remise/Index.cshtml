@@ -4,15 +4,441 @@
 }
 
 <h2>Overzicht van de remise</h2>
+<form method="post" action="/Remise/OverzichtTrams">
+    <label>Overzicht van alle trams:</label>
+    <input type="submit" name="laad_overzicht_trams" value="Overzicht van alle trams" />
+</form>
 
-<p>Blokkeren van een spoor</p>
-@Html.Partial("BlokkeerSpoorPartialView")
+<div class="row">
+    <div class="col-lg-6">
+        <p>Uirijden van een tram:</p>
+        @Html.Partial("UitrijdenPartialView")
+    </div>
+    <div class="col-lg-6">
+        <p>Inrijden van een tram:</p>
+        @Html.Partial("InrijdenPartialView")
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-6">
+        <p>Blokkeren van een spoor</p>
+        @Html.Partial("BlokkeerSpoorPartialView")
+    </div>
+    <div class="col-lg-6">
+        <p>Verplaatsen van een tram:</p>
+        @Html.Partial("VerplaatsTramPartialView")
+    </div>
+</div>
 <br/>
-<p>Verplaatsen van een tram:</p>
-@Html.Partial("VerplaatsTramPartialView")
-<br/>
-<p>Uirijden van een tram:</p>
-@Html.Partial("UitrijdenPartialView")
-<br/>
-<p>Inrijden van een tram:</p>
-@Html.Partial("InrijdenPartialView")
+
+
+<div class="row">
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 38</th></tr>
+            <tr class="lijn"><td>Lijn 2</td></tr>
+            <tr><td id="sector381"></td></tr>
+            <tr><td id="sector382"></td></tr>
+            <tr><td id="sector383"></td></tr>
+            <tr><td id="sector384"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 37</th></tr>
+            <tr class="lijn"><td>Lijn 5</td></tr>
+            <tr><td id="sector371"></td></tr>
+            <tr><td id="sector372"></td></tr>
+            <tr><td id="sector373"></td></tr>
+            <tr><td id="sector374"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 36</th></tr>
+            <tr class="lijn"><td>Lijn 1</td></tr>
+            <tr><td id="sector361"></td></tr>
+            <tr><td id="sector362"></td></tr>
+            <tr><td id="sector363"></td></tr>
+            <tr><td id="sector364"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 35</th></tr>
+            <tr class="lijn"><td>Lijn 16 / 24</td></tr>
+            <tr><td id="sector351"></td></tr>
+            <tr><td id="sector352"></td></tr>
+            <tr><td id="sector353"></td></tr>
+            <tr><td id="sector354"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 34</th></tr>
+            <tr class="lijn"><td>Lijn 2</td></tr>
+            <tr><td id="sector341"></td></tr>
+            <tr><td id="sector342"></td></tr>
+            <tr><td id="sector343"></td></tr>
+            <tr><td id="sector344"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 33</th></tr>
+            <tr class="lijn"><td>Lijn 16 / 24</td></tr>
+            <tr><td id="sector331"></td></tr>
+            <tr><td id="sector332"></td></tr>
+            <tr><td id="sector333"></td></tr>
+            <tr><td id="sector334"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 32</th></tr>
+            <tr class="lijn"><td>Lijn 10</td></tr>
+            <tr><td id="sector321"></td></tr>
+            <tr><td id="sector322"></td></tr>
+            <tr><td id="sector323"></td></tr>
+            <tr><td id="sector324"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 31</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector311"></td></tr>
+            <tr><td id="sector312"></td></tr>
+            <tr><td id="sector313"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 30</th></tr>
+            <tr class="lijn"><td>Lijn 16 / 24</td></tr>
+            <tr><td id="sector301"></td></tr>
+            <tr><td id="sector302"></td></tr>
+            <tr><td id="sector303"></td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 40</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector401"></td></tr>
+            <tr><td id="sector402"></td></tr>
+            <tr><td id="sector403"></td></tr>
+            <tr><td id="sector404"></td></tr>
+            <tr><td id="sector405"></td></tr>
+            <tr><td id="sector406"></td></tr>
+            <tr><td id="sector407"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 41</th></tr>
+            <tr class="lijn"><td>Lijn 10</td></tr>
+            <tr><td id="sector411"></td></tr>
+            <tr><td id="sector412"></td></tr>
+            <tr><td id="sector413"></td></tr>
+            <tr><td id="sector414"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 42</th></tr>
+            <tr class="lijn"><td>Lijn 5</td></tr>
+            <tr><td id="sector421"></td></tr>
+            <tr><td id="sector422"></td></tr>
+            <tr><td id="sector423"></td></tr>
+            <tr><td id="sector424"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 43</th></tr>
+            <tr class="lijn"><td>Lijn 1</td></tr>
+            <tr><td id="sector431"></td></tr>
+            <tr><td id="sector432"></td></tr>
+            <tr><td id="sector433"></td></tr>
+            <tr><td id="sector434"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 44</th></tr>
+            <tr class="lijn"><td>Lijn 13</td></tr>
+            <tr><td id="sector441"></td></tr>
+            <tr><td id="sector442"></td></tr>
+            <tr><td id="sector443"></td></tr>
+            <tr><td id="sector444"></td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 45</th></tr>
+            <tr class="lijn"><td>Lijn 17</td></tr>
+            <tr><td id="sector451"></td></tr>
+            <tr><td id="sector452"></td></tr>
+            <tr><td id="sector453"></td></tr>
+            <tr><td id="sector454"></td></tr>
+            <tr><td id="sector455"></td></tr>
+            <tr><td id="sector456"></td></tr>
+            <tr><td id="sector457"></td></tr>
+            <tr><td id="sector458"></td></tr>
+            <tr><td id="sector459"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1 col-lg-offset-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 58</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector581"></td></tr>
+            <tr><td id="sector582"></td></tr>
+            <tr><td id="sector583"></td></tr>
+            <tr><td id="sector584"></td></tr>
+            <tr><td id="sector585"></td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 57</th></tr>
+            <tr class="lijn"><td>Lijn 16 / 24</td></tr>
+            <tr><td id="sector571"></td></tr>
+            <tr><td id="sector572"></td></tr>
+            <tr><td id="sector573"></td></tr>
+            <tr><td id="sector574"></td></tr>
+            <tr><td id="sector575"></td></tr>
+            <tr><td id="sector576"></td></tr>
+            <tr><td id="sector577"></td></tr>
+            <tr><td id="sector578"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 56</th></tr>
+            <tr class="lijn"><td>Lijn 5</td></tr>
+            <tr><td id="sector561"></td></tr>
+            <tr><td id="sector562"></td></tr>
+            <tr><td id="sector563"></td></tr>
+            <tr><td id="sector564"></td></tr>
+            <tr><td id="sector565"></td></tr>
+            <tr><td id="sector566"></td></tr>
+            <tr><td id="sector567"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 55</th></tr>
+            <tr class="lijn"><td>Lijn 2</td></tr>
+            <tr><td id="sector551"></td></tr>
+            <tr><td id="sector552"></td></tr>
+            <tr><td id="sector553"></td></tr>
+            <tr><td id="sector554"></td></tr>
+            <tr><td id="sector555"></td></tr>
+            <tr><td id="sector556"></td></tr>
+            <tr><td id="sector557"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 54</th></tr>
+            <tr class="lijn"><td>Lijn 5</td></tr>
+            <tr><td id="sector541"></td></tr>
+            <tr><td id="sector542"></td></tr>
+            <tr><td id="sector543"></td></tr>
+            <tr><td id="sector544"></td></tr>
+            <tr><td id="sector545"></td></tr>
+            <tr><td id="sector546"></td></tr>
+            <tr><td id="sector547"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 53</th></tr>
+            <tr class="lijn"><td>Lijn 13</td></tr>
+            <tr><td id="sector531"></td></tr>
+            <tr><td id="sector532"></td></tr>
+            <tr><td id="sector533"></td></tr>
+            <tr><td id="sector534"></td></tr>
+            <tr><td id="sector535"></td></tr>
+            <tr><td id="sector536"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 52</th></tr>
+            <tr class="lijn"><td>Lijn 17</td></tr>
+            <tr><td id="sector521"></td></tr>
+            <tr><td id="sector522"></td></tr>
+            <tr><td id="sector523"></td></tr>
+            <tr><td id="sector524"></td></tr>
+            <tr><td id="sector525"></td></tr>
+            <tr><td id="sector526"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 51</th></tr>
+            <tr class="lijn"><td>Lijn 1</td></tr>
+            <tr><td id="sector511"></td></tr>
+            <tr><td id="sector512"></td></tr>
+            <tr><td id="sector513"></td></tr>
+            <tr><td id="sector514"></td></tr>
+            <tr><td id="sector515"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 64</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector641"></td></tr>
+            <tr><td id="sector642"></td></tr>
+            <tr><td id="sector643"></td></tr>
+            <tr><td id="sector644"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 63</th></tr>
+            <tr class="lijn"><td>Lijn 2</td></tr>
+            <tr><td id="sector631"></td></tr>
+            <tr><td id="sector632"></td></tr>
+            <tr><td id="sector633"></td></tr>
+            <tr><td id="sector634"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 62</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector621"></td></tr>
+            <tr><td id="sector622"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 61</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector611"></td></tr>
+            <tr><td id="sector612"></td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 74</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector741"></td></tr>
+            <tr><td id="sector742"></td></tr>
+            <tr><td id="sector743"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 75</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector751"></td></tr>
+            <tr><td id="sector752"></td></tr>
+            <tr><td id="sector753"></td></tr>
+            <tr><td id="sector754"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 76</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector761"></td></tr>
+            <tr><td id="sector762"></td></tr>
+            <tr><td id="sector763"></td></tr>
+            <tr><td id="sector764"></td></tr>
+            <tr><td id="sector765"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 77</th></tr>
+            <tr class="lijn"><td></td></tr>
+            <tr><td id="sector771"></td></tr>
+            <tr><td id="sector772"></td></tr>
+            <tr><td id="sector773"></td></tr>
+            <tr><td id="sector774"></td></tr>
+            <tr><td id="sector775"></td></tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 12</th></tr>
+            <tr><td id="sector121"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 13</th></tr>
+            <tr><td id="sector131"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 14</th></tr>
+            <tr><td id="sector141"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 15</th></tr>
+            <tr><td id="sector151"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 16</th></tr>
+            <tr><td id="sector161"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 17</th></tr>
+            <tr><td id="sector171"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 18</th></tr>
+            <tr><td id="sector181"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 19</th></tr>
+            <tr><td id="sector191"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 20</th></tr>
+            <tr><td id="sector201"></td></tr>
+        </table>
+    </div>
+    <div class="col-lg-1">
+        <table class="table table-bordered">
+            <tr class="spoor"><th>Spoor 21</th></tr>
+            <tr><td id="sector211"></td></tr>
+        </table>
+    </div>
+</div>

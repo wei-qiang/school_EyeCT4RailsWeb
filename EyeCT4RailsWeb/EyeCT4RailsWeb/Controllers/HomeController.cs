@@ -19,7 +19,8 @@ namespace EyeCT4RailsWeb.Controllers
             return View();
         }
 
-        public ActionResult Login(string gebruikersnaam, string wachtwoord)
+        [HttpPost]
+        public ActionResult Index(string gebruikersnaam, string wachtwoord)
         {
             Gebruiker gebruiker = GebruikerRepo.LoginUser(gebruikersnaam, wachtwoord);
 
@@ -29,7 +30,9 @@ namespace EyeCT4RailsWeb.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Overzicht");
+                Session["gebruikersnaam"] = gebruikersnaam;
+                Session.Timeout = 30;
+                return RedirectToAction("Index", "Remise");
                 //Hier moet nog het hele session gebeuren omheen gebouwd worden
             }
         }
