@@ -42,9 +42,9 @@ namespace EyeCT4RailsWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Verplaats(int originele_sector = 0, int nieuwe_sector = 0)
+        public ActionResult Verplaats(int originele_sector = 0, int nieuwe_sector = 0, int nieuw_spoor = 0)
         {
-            if (originele_sector > 0 && nieuwe_sector > 0)
+            if (originele_sector > 0 && nieuwe_sector > 0 && nieuw_spoor > 0)
             {
                 Tram tram = null;
 
@@ -58,7 +58,7 @@ namespace EyeCT4RailsWeb.Controllers
                     }
                 }
 
-                Sector sector = sectorRepo.GetSectorByID(nieuwe_sector);
+                Sector sector = sectorRepo.GetSectorByID(nieuw_spoor, nieuwe_sector);
 
                 if (tram != null && sector != null)
                 {
