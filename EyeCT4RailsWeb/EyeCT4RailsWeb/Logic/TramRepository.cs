@@ -32,9 +32,9 @@ namespace EyeCT4RailsWeb.Logic
             return tramList;
         }
 
-        public Tram GetTramByID(int ID)
+        public Tram GetTramByID(int nummer)
         {
-            return _tramRepo.GetTramByID(ID);
+            return _tramRepo.GetTramByID(nummer);
         }
 
         public bool ChangeStatusTram(Status status, Tram tram, int prioriteit)
@@ -125,16 +125,15 @@ namespace EyeCT4RailsWeb.Logic
                         FreeSector = GetReachableSectorOfSpoor(tram.Sector.Spoor);
 
                         //kijk of de tram de spoor kan verlaten
-
                         if (FreeSector == null)
                         {
                             string maxspoorsector = Convert.ToString(tram.Sector.Spoor) + Convert.ToString(sectorRepository.GetSectorBySpoor(tram.Sector.Spoor).Count);
-                            if (maxspoorsector == Convert.ToString(tram.Sector.ID))
+                            if (maxspoorsector == Convert.ToString(tram.Sector.Spoor) + Convert.ToString(tram.Sector.Nummer))
                             {
                                 FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
                             }
                         }
-                        else if (FreeSector.ID == tram.Sector.ID + 1)
+                        else if (convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer) == convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer) + 1)
                         {
                             FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
                         }
@@ -144,11 +143,13 @@ namespace EyeCT4RailsWeb.Logic
                         }
 
                         //kijk of de weg naar het sector vanaf het spoor vrij is
-                        if (sector.ID >= FreeSector.ID)
+                        if (convertSectorSpoorNummer(sector.Spoor, sector.Nummer) >= convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer))
                         {
                             sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
                             _tramRepo.ChangeTramSector(sector, tram);
                             tram.Sector.ID = sector.ID;
+                            tram.Sector.Nummer = sector.Nummer;
+                            tram.Sector.Spoor = sector.Spoor;
                             sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
                             return true;
                         }
@@ -167,10 +168,10 @@ namespace EyeCT4RailsWeb.Logic
         {
             Sector FreeSector = GetReachableSectorOfSpoor(tram.Sector.Spoor);
             //kijk of de tram de spoor kan verlaten
-            if (FreeSector.ID == tram.Sector.ID + 1)
+            if (convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer) == convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer) + 1)
             {
                 sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
-                _tramRepo.LeaveRemise(tram.ID);
+                _tramRepo.LeaveRemise(tram.TramNummer);
                 return true;
             }
             else
@@ -214,12 +215,11 @@ namespace EyeCT4RailsWeb.Logic
         {
             //haalt een lijst op van sectors van het spoor waar de tram op staat
             List<Sector> sectors = sectorRepository.GetSectorBySpoor(tram.Sector.Spoor);
-            if (sector.ID < tram.Sector.ID)
+            if (convertSectorSpoorNummer(sector.Spoor, sector.Nummer) < convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer))
             {
-
                 for (int i = 0; i < sectors.Count; i++)
                 {
-                    if (sectors[i].ID < sector.ID || sectors[i].ID >= tram.Sector.ID)
+                    if (Convert.ToInt32(Convert.ToString(sectors[i].Spoor) + Convert.ToString(sectors[i].Nummer)) < Convert.ToInt32(Convert.ToString(sector.Spoor) + Convert.ToString(sector.Nummer)) || Convert.ToInt32(Convert.ToString(sectors[i].Spoor) + Convert.ToString(sectors[i].Nummer)) >= Convert.ToInt32(Convert.ToString(tram.Sector.Spoor) + Convert.ToString(tram.Sector.Nummer)))
                     {
                         sectors.Remove(sectors[i]);
                         i = -1;
@@ -230,7 +230,7 @@ namespace EyeCT4RailsWeb.Logic
             {
                 for (int i = 0; i < sectors.Count; i++)
                 {
-                    if (sectors[i].ID > sector.ID || sectors[i].ID <= tram.Sector.ID)
+                    if (Convert.ToInt32(Convert.ToString(sectors[i].Spoor) + Convert.ToString(sectors[i].Nummer)) > Convert.ToInt32(Convert.ToString(sector.Spoor) + Convert.ToString(sector.Nummer)) || Convert.ToInt32(Convert.ToString(sectors[i].Spoor) + Convert.ToString(sectors[i].Nummer)) <= Convert.ToInt32(Convert.ToString(tram.Sector.Spoor) + Convert.ToString(tram.Sector.Nummer)))
                     {
                         sectors.Remove(sectors[i]);
                         i = -1;
@@ -259,6 +259,11 @@ namespace EyeCT4RailsWeb.Logic
                 return _tramRepo.GetReparartieTrams();
             }
             return null;
+        }
+
+        private int convertSectorSpoorNummer(int spoor, int nummer)
+        {
+            return Convert.ToInt32(Convert.ToString(spoor) + Convert.ToString(nummer));
         }
     }
 }
