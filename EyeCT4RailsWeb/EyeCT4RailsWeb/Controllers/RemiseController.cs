@@ -58,7 +58,7 @@ namespace EyeCT4RailsWeb.Controllers
                     }
                 }
 
-                Sector sector = sectorRepo.GetSectorByID(nieuwe_sector);
+                Sector sector = sectorRepo.GetSectorByID(nieuwe_sector,1); // DIE 1 klopt niet!
 
                 if (tram != null && sector != null)
                 {

@@ -72,7 +72,7 @@ namespace EyeCT4RailsWeb.Models
             ID = _ID;
             Tramtype = _Tramtype;
             Lijn = _Lijn;
-            this.Sector = sectorRepo.GetSectorByID(_Sector);
+            this.Sector = sectorRepo.GetSectorByID(_Sector,1); //Die 1 klopt niet!!!
             Status = _Status;
             //PrioriteitReparatie = _PrioriteitReparatie;
             //PrioriteitSchoonmaak = _PrioriteitSchoonmaak;
