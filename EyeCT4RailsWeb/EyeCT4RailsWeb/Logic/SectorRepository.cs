@@ -21,9 +21,9 @@ namespace EyeCT4RailsWeb.Logic
             return _sectorRepo.GetAllSectors();
         }
 
-        public Sector GetSectorByID(int ID)
+        public Sector GetSectorByID(int spoornummer, int sectornummer)
         {
-            Sector sector = _sectorRepo.GetSectorByID(ID);
+            Sector sector = _sectorRepo.GetSectorByID(spoornummer, sectornummer);
             sector.Lijn = GetSpoorLijn(sector.Spoor);
             return sector;
         }
@@ -36,7 +36,7 @@ namespace EyeCT4RailsWeb.Logic
         public bool BlockSector(int spoorid, int sectornummer)
         {
             int blokkeren = 0;
-            Sector sector = GetSectorByID(ID);
+            Sector sector = GetSectorByID(spoorid, sectornummer);
             if (sector.Blokkeren == false)
             {
                 blokkeren = 1;
