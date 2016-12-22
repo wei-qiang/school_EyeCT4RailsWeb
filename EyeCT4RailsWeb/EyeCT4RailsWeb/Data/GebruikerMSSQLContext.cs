@@ -47,7 +47,7 @@ namespace EyeCT4RailsWeb.Data
         {
              return new Gebruiker(
                 Convert.ToString(reader["Naam"]),
-                (Functie)Enum.Parse(typeof(Functie), (Convert.ToString(reader["Functie_ID"]))));
+                (Functie)Enum.Parse(typeof(Functie), (Convert.ToString(reader["Functie"]))));
         }
 
         public bool GebruikerToevoegen(string gebruikersnaam, string wachtwoord, string functie)
