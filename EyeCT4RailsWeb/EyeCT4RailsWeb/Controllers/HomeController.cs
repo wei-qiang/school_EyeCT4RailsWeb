@@ -31,6 +31,7 @@ namespace EyeCT4RailsWeb.Controllers
             else
             {
                 Session["gebruikersnaam"] = gebruikersnaam;
+                Session["functie"] = gebruiker.Functie;
                 Session.Timeout = 30;
                 return RedirectToAction("Index", "Remise");
                 //Hier moet nog het hele session gebeuren omheen gebouwd worden
