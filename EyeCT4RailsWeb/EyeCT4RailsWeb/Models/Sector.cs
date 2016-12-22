@@ -20,6 +20,12 @@ namespace EyeCT4RailsWeb.Models
             Blokkeren = _Blokkeren;
         }
 
+        public Sector(int _Spoor, int _ID)
+        {
+            Spoor = _Spoor;
+            ID = _ID;
+        }
+
         public bool BlokkeerSector(bool _Blokkeer)
         {
             if (this.Blokkeren == true)
@@ -37,7 +43,7 @@ namespace EyeCT4RailsWeb.Models
 
         public override string ToString()
         {
-            return ID.ToString();
+            return Spoor + " - " + ID;
         }
     }
 }

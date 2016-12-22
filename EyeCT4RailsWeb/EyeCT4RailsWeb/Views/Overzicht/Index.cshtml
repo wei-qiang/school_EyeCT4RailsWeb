@@ -1,0 +1,30 @@
+﻿@using EyeCT4RailsWeb.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table table-striped table table-hover">
+    <thead>
+        <tr>
+            <th>tram nummer</th>
+            <th>tram type</th>
+            <th>spoor nummer</th>
+            <th>sector nummer</th>
+            <th>status</th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TramNummer</td>
+                <td>@item.Tramtype</td>
+                <td>@item.Sector.Spoor</td>
+                <td>@item.Sector.ID</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
