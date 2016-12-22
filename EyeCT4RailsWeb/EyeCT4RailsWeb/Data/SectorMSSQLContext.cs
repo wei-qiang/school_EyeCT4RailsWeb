@@ -150,13 +150,13 @@ namespace EyeCT4RailsWeb.Data
 
         public int GetSpoorLijn(int spoor)
         {
-            string query = "SELECT sl.Lijn_ID FROM SPOOR_LIJN sl WHERE sl.Spoor_ID = @spoorID;";
+            string query = "SELECT l.Nummer FROM SPOOR sp, LIJN l WHERE sp.Lijn_ID = l.ID and sp.Nummer = @spoor";
             int lijn = 0;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@spoorID", spoor);
+                    cmd.Parameters.AddWithValue("@spoor", spoor);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
