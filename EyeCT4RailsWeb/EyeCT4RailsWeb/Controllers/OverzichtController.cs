@@ -17,7 +17,6 @@ namespace EyeCT4RailsWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.ViewMessage = Convert.ToString(TempData["Text"]);
-            TramRepository tramRepo = new TramRepository(new TramMSSQLContext());
             List<Tram> TramList = new List<Tram>();
             TramList = tramRepo.GetTrams();         
             return View(TramList);
@@ -28,12 +27,11 @@ namespace EyeCT4RailsWeb.Controllers
         {
             if (tram_id > 0)
             {
-                Tram t1 = new Tram(tram_id);
-                Status s1 = (Status)Enum.Parse(typeof(Status), status);
-                if(tramRepo.ChangeStatusTram(s1, t1, Prioriteit))
+                Tram t = new Tram(tram_id);
+                Status s = (Status)Enum.Parse(typeof(Status), status);
+                if(tramRepo.ChangeStatusTram(s, t, Prioriteit))
                 {
                     TempData["Text"] = "Het veranderen van de status is gelukt";
-
                 }
                 else
                 {
@@ -45,7 +43,6 @@ namespace EyeCT4RailsWeb.Controllers
                 TempData["Text"] = "Het veranderen van de status is Mislukt";
             }
             return RedirectToAction("Index");
-
         }
     }
 }
