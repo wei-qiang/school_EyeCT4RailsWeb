@@ -64,6 +64,11 @@ namespace EyeCT4RailsWeb.Models
             Tramtype = _Tramtype;
         }
 
+        public Tram(int _ID)
+        {
+            ID = _ID;   
+        }
+
         /// <summary>
         /// deze constructor maakt een instantie van de tram aan en haalt zelf de sector klasse op als je alleen het nummer doorgeeft
         /// </summary>
