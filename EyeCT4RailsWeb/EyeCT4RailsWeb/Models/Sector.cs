@@ -40,7 +40,9 @@ namespace EyeCT4RailsWeb.Models
 
         public int CompareTo(Sector other)
         {
-            return ID.CompareTo(other.ID) * -1;
+            string ThisFullSector = Convert.ToString(Spoor) + Convert.ToString(Nummer);
+            string OtherFullSector = Convert.ToString(other.Spoor) + Convert.ToString(other.Nummer);
+            return ThisFullSector.CompareTo(OtherFullSector) * -1;
         }
 
         public override string ToString()

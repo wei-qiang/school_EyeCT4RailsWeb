@@ -2,27 +2,35 @@
 @model Gebruiker
 
 
-<h2>Nieuwe Gebruiker</h2>
+<h2 class="text-center">Nieuwe Gebruiker</h2>
 <br />
-<p>Vul hieronder de gegevens van de nieuwe gebruiker in.</p>
+<p class="text-center">Maak een nieuwe gebruiker aan door onderstaand formulier in te vullen.</p>
+<div class="text-center"><text class="alert-danger">@ViewBag.error</text></div>
+<br />
 
-<form method="post">
 
-    <label>Gebruikersnaam:</label>
-    <input name="gebruikersnaam" />
+<div class="row">
+    <div class="col-lg-offset-4 col-lg-4">
+        <form method="post">
 
-    <label>Password:</label>
-    <input name="wachtwoord" type="password" />
+            <div class="form-group">
+                <input name="gebruikersnaam"  class="form-control" placeholder="Gebruikersnaam"/>
+            </div>
+            <div class="form-group">
+                <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord" />
+            </div>
+            <div class="form-group">
+                <label class="text-info">Functie</label>
+                <select name="functie" class="form-control">
+                    @foreach (Functie func in Enum.GetValues(typeof(Functie)))
+            {
+                        <option value="@func.ToString()">@func.ToString()</option>
+                    }
+                </select>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
 
-    <label>Functie:</label>
-    <select name="functie">
-        @foreach (Functie func in Enum.GetValues(typeof(Functie)))
-        {
-            <option value="@func.ToString()">@func.ToString()</option>
-        }
-    </select>
-
-    <input type="submit" value="Submit" />
-
-</form>
+        </form>
+    </div>
+</div>
 
