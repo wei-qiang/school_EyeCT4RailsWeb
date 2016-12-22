@@ -1,23 +1,24 @@
 ﻿@using EyeCT4RailsWeb.Models
 @model Gebruiker
-@{
-    ViewBag.Title = "Create new user";
-}
 
-<h2>Create</h2>
-<p>On this page you can add a new user.</p>
+
+<h2>Nieuwe Gebruiker</h2>
+<br />
+<p>Vul hieronder de gegevens van de nieuwe gebruiker in.</p>
+
 <form method="post">
-    <label>Gebruikersnaam:</label>
-    <input name="Username" value="@Model.Gebruikersnaam" />
 
-    <label>Naam:</label>
-    <input name="Name" value="@Model.Naam" />
+    <label>Gebruikersnaam:</label>
+    <input name="gebruikersnaam" />
+
+    <label>Password:</label>
+    <input name="wachtwoord" type="password" />
 
     <label>Functie:</label>
-    <select name="Function" value="@Model.Functie">
-        @foreach ()
+    <select name="functie">
+        @foreach (Functie func in Enum.GetValues(typeof(Functie)))
         {
-            <option value="@gebruiker.Functie">@gebruiker.Functie</option>
+            <option value="@func.ToString()">@func.ToString()</option>
         }
     </select>
 

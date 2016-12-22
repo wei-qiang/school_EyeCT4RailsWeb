@@ -7,9 +7,9 @@ namespace EyeCT4RailsWeb.Models
 {
     public enum Functie
     {
-        BEHEERDER,
-        WAGENPARKBEHEERDER,
-        SCHOONMAAKCHEF,
-        MONTEURCHEF,
+        Beheerder,
+        Wagenparkbeheerder,
+        Schoonmaakchef,
+        Monteurchef,
     }
 }

@@ -56,7 +56,7 @@ namespace EyeCT4RailsWeb.Data
             {
                 connection.Open();
 
-                string query = "INSERT INTO MEDEWERKER(Naam, Wachtwoord, Functie_ID) VALUES('@Gebruikersnaam', '@Wachtwoord', (SELECT f.ID from FUNCTIE f where f.Naam = '@Functie'))";
+                string query = "INSERT INTO MEDEWERKER(Naam, Wachtwoord, Functie_ID) VALUES(@Gebruikersnaam, @Wachtwoord, (SELECT f.ID from FUNCTIE f where f.Naam = @Functie))";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Gebruikersnaam", gebruikersnaam);
