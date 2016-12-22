@@ -17,6 +17,7 @@ namespace EyeCT4RailsWeb.Models
         public Status Status { get; set; }
         public int PrioriteitReparatie { get; set; }
         public int PrioriteitSchoonmaak { get; set; }
+        public int TramNummer { get; set; }
 
 
         private SectorRepository sectorRepo = new SectorRepository(new SectorMSSQLContext());
@@ -25,13 +26,13 @@ namespace EyeCT4RailsWeb.Models
         /// <summary>
         /// deze constructor maakt maakt een instantie van tram aan.
         /// </summary>
-        public Tram(int _ID, string _Tramtype, int _Lijn, Sector _Sector/*, Status _Status, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
+        public Tram(int _ID, string _Tramtype, int _Lijn, Sector _Sector, Status _Status/*, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
         {
             ID = _ID;
             Tramtype = _Tramtype;
             Lijn = _Lijn;
             Sector = _Sector;
-            //Status = _Status;
+            Status = _Status;
             //PrioriteitReparatie = _PrioriteitReparatie;
             //PrioriteitSchoonmaak = _PrioriteitSchoonmaak;
         }
@@ -39,14 +40,22 @@ namespace EyeCT4RailsWeb.Models
         /// <summary>
         /// constructor van tram die geen sector heeft
         /// </summary>
-        public Tram(int _ID, string _Tramtype, int _Lijn/*, Status _Status, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
+        public Tram(int _ID, string _Tramtype, int _Lijn, Status _Status/*, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
         {
             ID = _ID;
             Tramtype = _Tramtype;
             Lijn = _Lijn;
-            //Status = _Status;
+            Status = _Status;
             //PrioriteitReparatie = _PrioriteitReparatie;
             //PrioriteitSchoonmaak = _PrioriteitSchoonmaak;
+        }
+        public Tram(int _ID, string _Tramtype, int _TramNummer, Status _Status, int _Sector, int _Spoor/*, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
+        {
+            ID = _ID;
+            Tramtype = _Tramtype;
+            Status = _Status;
+            TramNummer = _TramNummer;
+            Sector = new Sector(_Spoor, _Sector);
         }
 
         public Tram(int _ID, string _Tramtype)
@@ -58,13 +67,13 @@ namespace EyeCT4RailsWeb.Models
         /// <summary>
         /// deze constructor maakt een instantie van de tram aan en haalt zelf de sector klasse op als je alleen het nummer doorgeeft
         /// </summary>
-        public Tram(int _ID, string _Tramtype, int _Lijn, int _Sector/*, Status _Status, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
+        public Tram(int _ID, string _Tramtype, int _Lijn, int _Sector, Status _Status/*, int _PrioriteitReparatie, int _PrioriteitSchoonmaak*/)
         {
             ID = _ID;
             Tramtype = _Tramtype;
             Lijn = _Lijn;
             this.Sector = sectorRepo.GetSectorByID(_Sector);
-            //Status = _Status;
+            Status = _Status;
             //PrioriteitReparatie = _PrioriteitReparatie;
             //PrioriteitSchoonmaak = _PrioriteitSchoonmaak;
         }
@@ -108,7 +117,7 @@ namespace EyeCT4RailsWeb.Models
         */
         public override string ToString()
         {
-            return ID + " " + Tramtype;
+            return TramNummer + " - " + Tramtype + " - " + Sector + " - " + Status;
         }
     }
 }

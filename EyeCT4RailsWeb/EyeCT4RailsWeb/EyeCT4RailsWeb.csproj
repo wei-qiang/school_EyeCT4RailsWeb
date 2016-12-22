@@ -151,6 +151,7 @@
     <Content Include="Views\Shared\VerplaatsTramPartialView.cshtml" />
     <Content Include="Views\Shared\UitrijdenPartialView.cshtml" />
     <Content Include="Views\Shared\InrijdenPartialView.cshtml" />
+    <Content Include="Views\Overzicht\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Overzicht\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

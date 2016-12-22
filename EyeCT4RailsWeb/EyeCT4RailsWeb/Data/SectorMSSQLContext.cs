@@ -11,9 +11,9 @@ namespace EyeCT4RailsWeb.Data
     {
         string connString = "Data Source=mssql.fhict.local;Initial Catalog=dbi344145;Integrated Security=False;User ID=dbi344145;Password=rails;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        public bool BlockSector(int ID, int blokkeren)
+        public bool BlockSector(int spoorid, int sectornummer, int blokkeren)
         {
-            string query = "UPDATE SECTOR SET Blokkeren = @blokkeren WHERE ID = @ID";
+            string query = "UPDATE SECTOR SET Blokkade = @blokkeren WHERE Spoor_ID = @spoorid AND Nummer = @sectornummer";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -23,7 +23,8 @@ namespace EyeCT4RailsWeb.Data
                 {
 
                     cmd.Parameters.AddWithValue("@blokkeren", blokkeren);
-                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@spoorid", spoorid);
+                    cmd.Parameters.AddWithValue("@sectornummer", sectornummer);
 
                     if (Convert.ToInt32(cmd.ExecuteNonQuery()) > 0)
                     {
@@ -44,7 +45,7 @@ namespace EyeCT4RailsWeb.Data
             {
                 conn.Open();
 
-                string query = "SELECT s.ID, s.Spoor_ID, s.Blokkeren " +
+                string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkeren " +
                     "FROM SECTOR s, SPOOR sp WHERE s.Spoor_ID = sp.ID;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -56,7 +57,8 @@ namespace EyeCT4RailsWeb.Data
                         {
                             SectorList.Add(new Sector(reader.GetInt32(0),
                                                       reader.GetInt32(1),
-                                                      Convert.ToBoolean(reader.GetInt32(2))));
+                                                      reader.GetInt32(2),
+                                                      Convert.ToBoolean(reader.GetInt32(3))));
                         }
                         return SectorList;
                     }
@@ -64,15 +66,16 @@ namespace EyeCT4RailsWeb.Data
             }
         }
 
-        public Sector GetSectorByID(int ID)
+        public Sector GetSectorByID(int spoornummer, int sectornummer)
         {
-            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkade FROM SECTOR s WHERE s.ID = @ID;";
+            string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkeren FROM SECTOR s WHERE s.Spoor_Nummer = @spoornummer and s.Nummer = @sectornummer;";
             Sector sector = null;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@spoornummer", spoornummer);
+                    cmd.Parameters.AddWithValue("@sectornummer", sectornummer);
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -80,7 +83,8 @@ namespace EyeCT4RailsWeb.Data
                         {
                             sector = new Sector(reader.GetInt32(0),
                                                  reader.GetInt32(1),
-                                                 Convert.ToBoolean(reader.GetInt32(2)));
+                                                 reader.GetInt32(2),
+                                                 Convert.ToBoolean(reader.GetInt32(3)));
                         }
                     }
                 }
@@ -90,15 +94,14 @@ namespace EyeCT4RailsWeb.Data
 
         public Sector GetSectorByLijn(int Lijn)
         {
-            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkade " +
-                "FROM SECTOR s, SPOOR sp, SPOOR_LIJN sl WHERE s.Spoor_ID = sp.ID AND sp.ID = sl.Spoor_ID AND s.Blokkeren = 0 AND sl.Lijn_ID = @lijnID;";
+            string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkade FROM SECTOR s, SPOOR sp, LIJN l WHERE s.Spoor_Nummer = sp.Nummer AND sp.Lijn_ID = l.ID AND s.Blokkade = 0 AND l.Nummer = @lijn";
             Sector sector = null;
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@lijnID", Lijn);
+                    cmd.Parameters.AddWithValue("@lijn", Lijn);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -107,7 +110,8 @@ namespace EyeCT4RailsWeb.Data
                         {
                             sector = new Sector(reader.GetInt32(0),
                                                       reader.GetInt32(1),
-                                                      Convert.ToBoolean(reader.GetInt32(2)));
+                                                      reader.GetInt32(2),
+                                                      Convert.ToBoolean(reader.GetInt32(3)));
                             return sector;
                         }
                         return sector;
@@ -118,15 +122,14 @@ namespace EyeCT4RailsWeb.Data
 
         public List<Sector> GetSectorBySpoor(int spoor)
         {
-            string query = "SELECT s.ID, s.Spoor_ID, s.Blokkeren " +
-                "FROM SECTOR s, SPOOR sp WHERE s.Spoor_ID = sp.ID AND sp.ID = @spoorId;";
+            string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkade FROM SECTOR s, SPOOR sp WHERE s.Spoor_Nummer = sp.Nummer AND sp.Nummer = @spoor;";
             List<Sector> SectorList = new List<Sector>();
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Spoor", spoor);
+                    cmd.Parameters.AddWithValue("@spoor", spoor);
                     conn.Open();
 
                     cmd.Parameters.AddWithValue("@spoorId", spoor);
@@ -136,7 +139,8 @@ namespace EyeCT4RailsWeb.Data
                         {
                             SectorList.Add(new Sector(reader.GetInt32(0),
                                                       reader.GetInt32(1),
-                                                      Convert.ToBoolean(reader.GetInt32(2))));
+                                                      reader.GetInt32(2),
+                                                      Convert.ToBoolean(reader.GetInt32(3))));
                         }
                         return SectorList;
                     }
@@ -146,13 +150,13 @@ namespace EyeCT4RailsWeb.Data
 
         public int GetSpoorLijn(int spoor)
         {
-            string query = "SELECT s.nummer FROM spoor s WHERE s.ID = @spoorID;";
+            string query = "SELECT l.Nummer FROM SPOOR sp, LIJN l WHERE sp.Lijn_ID = l.ID and sp.Nummer = @spoor";
             int lijn = 0;
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@spoorID", spoor);
+                    cmd.Parameters.AddWithValue("@spoor", spoor);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())

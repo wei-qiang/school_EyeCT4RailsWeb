@@ -11,8 +11,8 @@ namespace EyeCT4RailsWeb.Data
     {
         List<Sector> GetAllSectors();
         List<Sector> GetSectorBySpoor(int spoor);
-        Sector GetSectorByID(int ID);
-        bool BlockSector(int ID, int blokkeren);
+        Sector GetSectorByID(int spoornummer, int sectornummer);
+        bool BlockSector(int spoorid, int sectornummer, int blokkeren);
         int GetSpoorLijn(int spoor);
         Sector GetSectorByLijn(int Lijn);
     }

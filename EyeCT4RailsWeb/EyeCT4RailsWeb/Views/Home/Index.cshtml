@@ -8,15 +8,19 @@
 
 <p>Login om toegang te krijgen het Remisesysteem.</p>
 
-<form method="post" id="loginform" class="form-group">
-    
-        <label>Gebruikersnaam:</label>
-        <input name="gebruikersnaam" />
-    
-        <br />
-    <label>Wachtwoord:</label>
-    <input name="wachtwoord" type="password" />
-    <br />
-    <input type="submit" value="Submit" />
-</form>
+<div class="row">
+    <div class="col-lg-offset-4 col-lg-4">
+
+        <form method="post" id="loginform">
+            <div class="form-group">
+                <input name="gebruikersnaam" class="form-control" placeholder="Gebruikersnaam" />
+            </div>
+            <div class="form-group">
+                <input name="wachtwoord" type="password" class="form-control" placeholder="Wachtwoord" />
+            </div>
+            <br />
+            <input type="submit" value="Login" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
 
