@@ -78,7 +78,7 @@ namespace EyeCT4RailsWeb.Logic
             try
             {
                 _tramRepo.ChangeTramSector(FreeSector, tram);
-                sectorRepository.BlockSector(FreeSector.ID);
+                sectorRepository.BlockSector(FreeSector.Spoor, FreeSector.Nummer);
                 return true;
             }
             catch
@@ -102,10 +102,10 @@ namespace EyeCT4RailsWeb.Logic
                 {
                     if (CheckReachableSectorFromTram(tram, sector))
                     {
-                        sectorRepository.BlockSector(tram.Sector.ID);
+                        sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
                         tram.Sector = sector;
                         _tramRepo.ChangeTramSector(sector, tram);
-                        sectorRepository.BlockSector(sector.ID);
+                        sectorRepository.BlockSector(sector.Spoor, sector.Nummer);
                         return true;
                     }
                     return false;
@@ -146,10 +146,10 @@ namespace EyeCT4RailsWeb.Logic
                         //kijk of de weg naar het sector vanaf het spoor vrij is
                         if (sector.ID >= FreeSector.ID)
                         {
-                            sectorRepository.BlockSector(tram.Sector.ID);
+                            sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
                             _tramRepo.ChangeTramSector(sector, tram);
                             tram.Sector.ID = sector.ID;
-                            sectorRepository.BlockSector(tram.Sector.ID);
+                            sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
                             return true;
                         }
                     }
@@ -169,7 +169,7 @@ namespace EyeCT4RailsWeb.Logic
             //kijk of de tram de spoor kan verlaten
             if (FreeSector.ID == tram.Sector.ID + 1)
             {
-                sectorRepository.BlockSector(tram.Sector.ID);
+                sectorRepository.BlockSector(tram.Sector.Spoor, tram.Sector.Nummer);
                 _tramRepo.LeaveRemise(tram.ID);
                 return true;
             }
