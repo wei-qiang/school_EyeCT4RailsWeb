@@ -16,3 +16,14 @@ textarea {
     max-width: 280px;
 }
 
+.column {
+    padding: 0px;
+}
+
+.spoor {
+    background-color: lightgrey;
+}
+
+.lijn {
+    background-color: lightgreen;
+}
