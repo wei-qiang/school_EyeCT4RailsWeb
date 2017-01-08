@@ -21,22 +21,33 @@ namespace EyeCT4RailsWeb.Controllers
         [HttpPost]
         public ActionResult Create(string gebruikersnaam, string wachtwoord, string functie)
         {
-            if(String.IsNullOrEmpty(gebruikersnaam) || String.IsNullOrEmpty(wachtwoord) || String.IsNullOrEmpty(functie))
+            if(Session["username"] != null)
             {
-                ViewBag.error = "Je hebt niks ingevuld. Vul de velden in en probeer het opnieuw.";
-                return View();
-            }
-            bool adding = GebruikerRepo.AddUser(gebruikersnaam, wachtwoord, functie);
+                if (String.IsNullOrEmpty(gebruikersnaam) || String.IsNullOrEmpty(wachtwoord) || String.IsNullOrEmpty(functie))
+                {
+                    ViewBag.error = "Je hebt niks ingevuld. Vul de velden in en probeer het opnieuw.";
+                    return View();
+                }
+                bool adding = GebruikerRepo.AddUser(gebruikersnaam, wachtwoord, functie);
 
-            if (adding == true)
-            {
-                return RedirectToAction("Index","Remise");
+                if (adding == true)
+                {
+                    ViewBag.error = null;
+                    return RedirectToAction("Index", "Remise");
+                }
+                else
+                {
+                    ViewBag.error = "Er is iets fout gegaan. Probeer het opnieuw.";
+                    return View(); // De view die een foutmelding geeft en het opnieuw laat proberen.
+                }
+                
             }
             else
             {
-                ViewBag.error = "Er is iets fout gegaan. Probeer het opnieuw.";           
-                return View(); // De view die een foutmelding geeft en het opnieuw laat proberen.
+                return RedirectToAction("Index", "Home");
             }
+
+            
         }
         
         

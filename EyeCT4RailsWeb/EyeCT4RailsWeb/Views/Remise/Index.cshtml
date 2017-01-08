@@ -1,9 +1,22 @@
-﻿@model IEnumerable<EyeCT4RailsWeb.Models.Tram>
+﻿@using EyeCT4RailsWeb.Models
+@model IEnumerable<EyeCT4RailsWeb.Models.Tram>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Overzicht van de remise</h2>
+
+@if (Session["functie"] != null)
+{
+    if (Functie.Beheerder == (Functie) Session["functie"])
+     {
+         <form method="get" action="/User/Create">
+             <label>Nieuwe gebruiker:</label>
+             <input type="submit" name="create_user" value="Voeg gebruiker toe"/>
+         </form>
+     }
+}
+
 <form method="post" action="/Remise/OverzichtTrams">
     <label>Overzicht van alle trams:</label>
     <input type="submit" name="laad_overzicht_trams" value="Overzicht van alle trams" />
