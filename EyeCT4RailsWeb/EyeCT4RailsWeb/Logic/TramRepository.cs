@@ -263,7 +263,7 @@ namespace EyeCT4RailsWeb.Logic
 
         private int convertSectorSpoorNummer(int spoor, int nummer)
         {
-            return Convert.ToInt32(Convert.ToString(spoor) + Convert.ToString(nummer));
+            return Convert.ToInt32(Convert.ToString(spoor) + Convert.ToString(nummer)); 
         }
     }
 }
