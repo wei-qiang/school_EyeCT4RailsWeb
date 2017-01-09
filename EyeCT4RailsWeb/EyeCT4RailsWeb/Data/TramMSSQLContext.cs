@@ -60,32 +60,59 @@ namespace EyeCT4RailsWeb.Data
                     {
                         while (reader.Read())
                         {
-                            int r4;
-                            int r5;
                             if (reader.IsDBNull(4))
                             {
-                                r4 = 0;
-                                    }
-                            else
-                            {
-                                r4 = reader.GetInt32(4);
-                            }
-                            if (reader.IsDBNull(5))
-                            {
-                                r5 = 0;
-                                    }
-                            else
-                            {
-                                r5 = reader.GetInt32(5);
-                            }
-                            tramList.Add(new Tram(reader.GetInt32(0),
+                                tramList.Add(new Tram(reader.GetInt32(0),
                                 reader.GetString(1),
                                 reader.GetInt32(2),
+                                reader.GetInt32(3),
                                 (Status)Enum.Parse(typeof(Status),
-                                reader.GetString(3)),
-                                r4,
-                                r5
-                                ));                       
+                                reader.GetString(6)),
+                                reader.GetInt32(7),
+                                reader.GetInt32(8)
+                                ));
+                            }
+                            else
+                            {
+                                tramList.Add(new Tram(reader.GetInt32(0),
+                                reader.GetString(1),
+                                reader.GetInt32(2),
+                                reader.GetInt32(3),
+                                reader.GetInt32(4),
+                                reader.GetInt32(5),
+                                (Status)Enum.Parse(typeof(Status),
+                                reader.GetString(6)),
+                                reader.GetInt32(7),
+                                reader.GetInt32(8)
+                                ));
+                            }
+
+                            //int r4;
+                            //int r5;
+                            //if (reader.IsDBNull(4))
+                            //{
+                            //    r4 = 0;
+                            //        }
+                            //else
+                            //{
+                            //    r4 = reader.GetInt32(4);
+                            //}
+                            //if (reader.IsDBNull(5))
+                            //{
+                            //    r5 = 0;
+                            //        }
+                            //else
+                            //{
+                            //    r5 = reader.GetInt32(5);
+                            //}
+                            //tramList.Add(new Tram(reader.GetInt32(0),
+                            //    reader.GetString(1),
+                            //    reader.GetInt32(2),
+                            //    (Status)Enum.Parse(typeof(Status),
+                            //    reader.GetString(3)),
+                            //    r4,
+                            //    r5
+                            //    ));                       
                         }
                         return tramList;
                     }
