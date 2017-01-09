@@ -45,8 +45,8 @@ namespace EyeCT4RailsWeb.Data
             {
                 conn.Open();
 
-                string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkeren " +
-                    "FROM SECTOR s, SPOOR sp WHERE s.Spoor_ID = sp.ID;";
+                string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkade " +
+                    "FROM SECTOR s, SPOOR sp WHERE s.Spoor_Nummer = sp.ID;";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
