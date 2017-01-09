@@ -24,8 +24,16 @@ namespace EyeCT4RailsWeb.Logic
         public Sector GetSectorByID(int spoornummer, int sectornummer)
         {
             Sector sector = _sectorRepo.GetSectorByID(spoornummer, sectornummer);
-            sector.Lijn = GetSpoorLijn(sector.Spoor);
-            return sector;
+            try
+            {
+                sector.Lijn = GetSpoorLijn(sector.Spoor);
+                return sector;
+            }
+            catch
+            {
+                return sector = new Sector(0, 0);
+            }
+            
         }
 
         public List<Sector> GetSectorBySpoor(int spoor)
