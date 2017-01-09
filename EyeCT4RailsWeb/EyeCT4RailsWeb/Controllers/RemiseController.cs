@@ -41,16 +41,16 @@ namespace EyeCT4RailsWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Verplaats(int originele_sector = 0, int nieuwe_sector = 0, int nieuw_spoor = 0)
+        public ActionResult Verplaats(int origineel_spoor = 0, int originele_sector = 0, int nieuwe_sector = 0, int nieuw_spoor = 0)
         {
-            if (originele_sector > 0 && nieuwe_sector > 0 && nieuw_spoor > 0)
+            if (origineel_spoor > 0 && originele_sector > 0 && nieuwe_sector > 0 && nieuw_spoor > 0)
             {
                 Tram tram = null;
 
                 List<Tram> trams = tramRepo.GetTrams();
                 foreach (Tram tempTram in trams)
                 {
-                    if (tempTram.Sector.ID == originele_sector)
+                    if (tempTram.Sector.Nummer == originele_sector && tempTram.Sector.Spoor == origineel_spoor)
                     {
                         tram = tempTram;
                         break;
@@ -61,7 +61,7 @@ namespace EyeCT4RailsWeb.Controllers
 
                 if (tram != null && sector != null)
                 {
-                    //tramRepo.ChangeTramSector(sector, tram);
+                    tramRepo.ChangeTramSector(sector, tram);
                 }
             }
             return RedirectToAction("Index");
