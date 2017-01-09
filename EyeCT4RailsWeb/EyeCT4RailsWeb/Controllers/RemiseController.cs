@@ -17,7 +17,6 @@ namespace EyeCT4RailsWeb.Controllers
         // GET: Remise
         public ActionResult Index()
         {
-            /*
             List<Tram> trams = new List<Tram>();
             trams = tramRepo.GetTrams();
 
@@ -27,16 +26,16 @@ namespace EyeCT4RailsWeb.Controllers
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             dictionary.Add("tramList", trams);
             dictionary.Add("sectorList", sectors);
-            */
+            
             return View();
         }
 
         [HttpPost]
-        public ActionResult Blokkeer(int blokkeer_spoor = 0)
+        public ActionResult Blokkeer(int blokkeer_spoor = 0, int blokkeer_sector = 0)
         {
-            if (blokkeer_spoor > 0)
+            if (blokkeer_spoor > 0 && blokkeer_sector > 0)
             {
-                //repo.BlockSector(Convert.ToInt32(blokkeer_spoor));
+                sectorRepo.BlockSector(blokkeer_spoor, blokkeer_sector);
             }
             return RedirectToAction("Index");
         }

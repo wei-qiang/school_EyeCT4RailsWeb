@@ -13,7 +13,7 @@ namespace EyeCT4RailsWeb.Data
 
         public bool BlockSector(int spoorid, int sectornummer, int blokkeren)
         {
-            string query = "UPDATE SECTOR SET Blokkade = @blokkeren WHERE Spoor_ID = @spoorid AND Nummer = @sectornummer";
+            string query = "UPDATE SECTOR SET Blokkade = @blokkeren WHERE Spoor_Nummer = @spoorid AND Nummer = @sectornummer";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -68,7 +68,7 @@ namespace EyeCT4RailsWeb.Data
 
         public Sector GetSectorByID(int spoornummer, int sectornummer)
         {
-            string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkeren FROM SECTOR s WHERE s.Spoor_Nummer = @spoornummer and s.Nummer = @sectornummer;";
+            string query = "SELECT s.ID, s.Spoor_Nummer, s.Nummer, s.Blokkade FROM SECTOR s WHERE s.Spoor_Nummer = @spoornummer and s.Nummer = @sectornummer;";
             Sector sector = null;
             using (SqlConnection conn = new SqlConnection(connString))
             {
