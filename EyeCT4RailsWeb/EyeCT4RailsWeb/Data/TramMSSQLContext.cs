@@ -75,6 +75,8 @@ namespace EyeCT4RailsWeb.Data
                                 reader.GetString(1),
                                 reader.GetInt32(2),
                                 reader.GetInt32(3),
+                                0,
+                                0,
                                 (Status)Enum.Parse(typeof(Status),
                                 reader.GetString(6)),
                                 reader.GetInt32(7),
