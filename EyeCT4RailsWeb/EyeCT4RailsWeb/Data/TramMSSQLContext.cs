@@ -19,13 +19,21 @@ namespace EyeCT4RailsWeb.Data
         /// <returns>true als het gelukt is anders false</returns>
         public bool ChangeTramSector(Sector sector, Tram tram)
         {
-            string query = "UPDATE SECTOR SET Tram_ID = @TramId WHERE Nummer = @Sectornummer AND Spoor_Nummer = @Sectorspoor";
+            string query = "UPDATE SECTOR SET Tram_ID = null, Blokkade = 0 WHERE Tram_ID = @TramId";
+            string query2 = "UPDATE SECTOR SET Tram_ID = @TramId, Blokkade = 1 WHERE Nummer = @Sectornummer AND Spoor_Nummer = @Sectorspoor";
 
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 conn.Open();
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@TramId", tram.ID);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                using (SqlCommand cmd = new SqlCommand(query2, conn))
                 {
                     cmd.Parameters.AddWithValue("@Sectorspoor", sector.Spoor);
                     cmd.Parameters.AddWithValue("@Sectornummer", sector.Nummer);

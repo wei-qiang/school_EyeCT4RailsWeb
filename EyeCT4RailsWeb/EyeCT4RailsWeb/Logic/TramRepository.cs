@@ -116,16 +116,16 @@ namespace EyeCT4RailsWeb.Logic
                     //check of de tram op het spoor mag staan
                     if (tram.Lijn != sector.Lijn)
                     {
-                        return false;
+                        //return false;
                     }
                     //check of de tram al op een sector staat
-                    else if (tram.Sector != null)
+                    if (tram.Sector != null)
                     {
                         //haalt bereikbare spoor op
                         FreeSector = GetReachableSectorOfSpoor(tram.Sector.Spoor);
 
                         //kijk of de tram de spoor kan verlaten
-                        if (FreeSector == null)
+                        if (FreeSector != null)
                         {
                             string maxspoorsector = Convert.ToString(tram.Sector.Spoor) + Convert.ToString(sectorRepository.GetSectorBySpoor(tram.Sector.Spoor).Count);
                             if (maxspoorsector == Convert.ToString(tram.Sector.Spoor) + Convert.ToString(tram.Sector.Nummer))
@@ -189,7 +189,8 @@ namespace EyeCT4RailsWeb.Logic
         {
             Sector FreeSector = default(Sector);
             //haalt een lijst op van sectors van het spoor waar de tram op staat
-            List<Sector> sectors = sectorRepository.GetSectorBySpoor(spoor);
+            List<Sector> sectors = new List<Sector>();
+            sectors = sectorRepository.GetSectorBySpoor(spoor);
             sectors.Sort();
             foreach (Sector s in sectors)
             {

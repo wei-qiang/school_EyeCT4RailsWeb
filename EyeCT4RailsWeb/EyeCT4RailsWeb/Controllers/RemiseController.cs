@@ -12,7 +12,7 @@ namespace EyeCT4RailsWeb.Controllers
     public class RemiseController : Controller
     {
         private SectorRepository sectorRepo = new SectorRepository(new SectorMSSQLContext());
-        private TramRepository tramRepo = new TramRepository(new TramMSSQLContext());
+        private TramRepository tramRepo = new TramRepository(new TramMSSQLContext(), new SectorMSSQLContext());
 
         // GET: Remise
         public ActionResult Index()
