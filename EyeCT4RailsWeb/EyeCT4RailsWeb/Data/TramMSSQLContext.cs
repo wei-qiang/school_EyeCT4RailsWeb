@@ -48,7 +48,7 @@ namespace EyeCT4RailsWeb.Data
         /// <returns></returns>
         public List<Tram> GetTrams()
         {
-            string query = "SELECT t.ID, tt.Omschrijving, t.nummer, t.Status, s.nummer, s.Spoor_Nummer FROM TRAM t LEFT JOIN Sector s ON s.Tram_ID = t.ID JOIN TRAMTYPE tt ON t.Tramtype_ID = tt.ID;";
+            string query = "SELECT t.ID, tt.Omschrijving, t.Nummer, l.Nummer, s.Spoor_Nummer, s.Nummer, t.Status, t.Defect, t.Vervuild FROM TRAM t left join SECTOR s ON s.Tram_ID = t.ID, TRAMTYPE tt, TRAM_LIJN tl, LIJN l WHERE t.Tramtype_ID = tt.ID AND t.ID = tl.Tram_ID AND tl.Lijn_ID = l.ID";
             List<Tram> tramList = new List<Tram>();
 
             using (SqlConnection conn = new SqlConnection(connString))
