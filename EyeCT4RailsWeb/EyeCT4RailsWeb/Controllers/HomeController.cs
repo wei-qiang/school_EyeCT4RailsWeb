@@ -26,7 +26,9 @@ namespace EyeCT4RailsWeb.Controllers
 
             if(gebruiker == null)
             {
+                @ViewBag.error = "Gebruikersnaam of wachtwoord is onjuist. Probeer aub opnieuw in te loggen.";
                 return View();
+                
             }
             else
             {

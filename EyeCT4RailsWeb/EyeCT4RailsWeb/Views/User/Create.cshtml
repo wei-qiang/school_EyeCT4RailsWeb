@@ -22,9 +22,9 @@
             <div class="form-group">
                 <label class="text-info">Functie</label>
                 <select name="functie" class="form-control">
-                    @foreach (Functie func in Enum.GetValues(typeof(Functie)))
+                    @foreach (string str in Model.AllFunctiesFromGebruikers)
             {
-                        <option value="@func.ToString()">@func.ToString()</option>
+                        <option value="@str.ToString()">@str.ToString()</option>
                     }
                 </select>
             </div>

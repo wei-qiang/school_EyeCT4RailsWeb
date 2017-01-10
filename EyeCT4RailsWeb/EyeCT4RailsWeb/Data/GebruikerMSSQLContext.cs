@@ -80,5 +80,39 @@ namespace EyeCT4RailsWeb.Data
                 }
             }
         }
+
+        public List<string> allFunctions()
+        {
+            List<string> functies = new List<string>();
+            using (SqlConnection connection = new SqlConnection(connstring))
+            {
+                connection.Open();
+
+                string query = "SELECT Naam FROM FUNCTIE";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                functies.Add(reader.GetString(0));
+                            }
+                        }
+                        return functies;
+                    }
+                    catch (SqlException e)
+                    {
+                        if (e.Number == 2627)
+                        {
+                            throw;
+                        }
+
+                        throw;
+                    }
+                }
+            }
+        }
     }
 }

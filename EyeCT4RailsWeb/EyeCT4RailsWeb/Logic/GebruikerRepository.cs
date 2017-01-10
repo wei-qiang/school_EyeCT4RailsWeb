@@ -25,5 +25,10 @@ namespace EyeCT4RailsWeb.Logic
         {
             return context.GebruikerToevoegen(gebruikersnaam, wachtwoord, functie);
         }
+
+        public List<string> GetAllFunctions()
+        {
+            return context.allFunctions();
+        }
     }
 }
