@@ -1,11 +1,10 @@
-﻿<form method="post" action="/Remise/Verplaats">
-    <label>Tramnummer</label>
-    <input type="number" name="tram_id" />
+﻿<form class="form-horizontal" method="post" action="/Remise/Verplaats">
+    <label>Tramnummer:</label>
+    <input class="form-control" type="number" name="tram_id" />
+    <label>Nieuw Spoor:</label>
+    <input class="form-control" type="number" name="nieuw_spoor" />
+    <label>Nieuwe Sector:</label>
+    <input class="form-control" type="number" name="nieuwe_sector" />
     <br />
-    <label>Nieuw Spoor</label>
-    <input type="number" name="nieuw_spoor" />
-    <label>Nieuwe Sector</label>
-    <input type="number" name="nieuwe_sector" />
-    <br />
-    <input type="submit" value="Verplaats tram" />
+    <input class="btn btn-default" type="submit" value="Verplaats tram" />
 </form>

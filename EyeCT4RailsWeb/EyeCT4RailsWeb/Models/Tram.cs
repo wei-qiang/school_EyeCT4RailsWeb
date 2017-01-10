@@ -82,47 +82,10 @@ namespace EyeCT4RailsWeb.Models
             Lijn = _Lijn;
             this.Sector = sectorRepo.GetSectorByID(_Spoor,_Sector);
             Status = _Status;
-            //PrioriteitReparatie = _PrioriteitReparatie;
-            //PrioriteitSchoonmaak = _PrioriteitSchoonmaak;
+            PrioriteitReparatie = _PrioriteitReparatie;
+            PrioriteitSchoonmaak = _PrioriteitSchoonmaak;
         }
 
-        /*
-        /// <summary>
-        /// Wijzigt de status van de tram
-        /// </summary>
-        /// <param name="_Status"></param>
-        /// <param name="_Prioriteit"></param>
-        /// <returns></returns>
-        public bool StatusWijzigen(Status _Status, int _Prioriteit)
-        {
-            if (Status == _Status)
-            {
-                if(Status == Status.Defect && PrioriteitReparatie == _Prioriteit)
-                {
-                    return false;
-                }
-                else if(Status == Status.Schoonmaak && PrioriteitSchoonmaak == _Prioriteit)
-                {
-                    return false;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            Status = _Status;
-            tramRepo.ChangeStatusTram(_Status, this, _Prioriteit);
-            if(Status == Status.Defect)
-            {
-                PrioriteitReparatie = _Prioriteit;
-            }
-            else if(Status == Status.Schoonmaak)
-            {
-                PrioriteitSchoonmaak = _Prioriteit;
-            } 
-            return true;
-        }
-        */
         public override string ToString()
         {
             return TramNummer + " - " + Tramtype + " - " + Sector + " - " + Status;
