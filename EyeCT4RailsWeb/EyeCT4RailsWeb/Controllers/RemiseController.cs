@@ -84,5 +84,33 @@ namespace EyeCT4RailsWeb.Controllers
         {
             return new RedirectResult("/Overzicht/Index");
         }
+
+        public JsonResult GetRemiseTrams()
+        {
+            List<Tram> Trams = tramRepo.GetTrams();
+            List<Tram> finalList = new List<Tram>();
+            foreach (Tram tram in Trams)
+            {
+                if (tram.Sector.Spoor != 0 && tram.Sector.Nummer != 0)
+                {
+                    finalList.Add(tram);
+                }
+            }
+            return Json(finalList, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetBlockedSectors()
+        {
+            List<Sector> Sectors = sectorRepo.GetAllSectors();
+            List<Sector> finalList = new List<Sector>();
+            foreach (Sector sector in Sectors)
+            {
+                if (sector.Blokkeren)
+                {
+                    finalList.Add(sector);
+                }
+            }
+            return Json(finalList, JsonRequestBehavior.AllowGet);
+        }
     }
 }

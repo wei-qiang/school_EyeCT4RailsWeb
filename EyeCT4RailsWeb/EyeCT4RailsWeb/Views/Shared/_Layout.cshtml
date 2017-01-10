@@ -22,16 +22,19 @@
                 @Html.ActionLink("Remise beheer programma", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (Session["functie"] != null)
-                    {
-                        if (Functie.Beheerder == (Functie) Session["functie"])
+                @if (Session["functie"] != null)
+                {
+                    <ul class="nav navbar-nav">
+                        @if (Functie.Beheerder == (Functie) Session["functie"])
                         {
-                            <li><a href="@Url.Action("Create", "User")">Nieuwe Gebruiker</a></li>
+                        <li><a href="@Url.Action("Create", "User")">Nieuwe Gebruiker</a></li>
                         }
                         <li><a href="@Url.Action("Index", "Overzicht")">Alle Trams</a></li>
-                    }
-                </ul>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Logout", "User")">Loguit</a></li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
@@ -46,5 +49,6 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

@@ -43,14 +43,11 @@ namespace EyeCT4RailsWeb.Controllers
                     ViewBag.error = "Er is iets fout gegaan. Probeer het opnieuw.";
                     return View(model); // De view die een foutmelding geeft en het opnieuw laat proberen.
                 }
-                
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            
         }
         
         
@@ -65,7 +62,16 @@ namespace EyeCT4RailsWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+        }
+
+        public ActionResult Logout()
+        {
+            if (Session["gebruikersnaam"] != null || Session["functie"] != null)
+            {
+                Session["gebruikernaam"] = null;
+                Session["functie"] = null;
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

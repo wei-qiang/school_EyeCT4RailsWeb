@@ -27,3 +27,7 @@ textarea {
 .lijn {
     background-color: lightgreen;
 }
+
+.blocked {
+    background-color: grey;
+}
