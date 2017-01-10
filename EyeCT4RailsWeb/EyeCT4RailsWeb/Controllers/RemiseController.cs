@@ -63,7 +63,7 @@ namespace EyeCT4RailsWeb.Controllers
             if (tram_id > 0)
             {
                 Tram t = tramRepo.GetTramByID(tram_id);
-                //tramRepo.LeaveRemise(t);
+                tramRepo.LeaveRemise(t);
             }
             return RedirectToAction("Index");
         }
@@ -74,7 +74,7 @@ namespace EyeCT4RailsWeb.Controllers
             if (tram_id > 0)
             {
                 Tram t = tramRepo.GetTramByID(tram_id);
-                //tramRepo.DriveIntoRemise(t);
+                tramRepo.DriveIntoRemise(t);
             }
             return RedirectToAction("Index");
         }
