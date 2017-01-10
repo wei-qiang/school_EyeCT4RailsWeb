@@ -98,5 +98,19 @@ namespace EyeCT4RailsWeb.Controllers
             }
             return Json(finalList, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetBlockedSectors()
+        {
+            List<Sector> Sectors = sectorRepo.GetAllSectors();
+            List<Sector> finalList = new List<Sector>();
+            foreach (Sector sector in Sectors)
+            {
+                if (sector.Blokkeren)
+                {
+                    finalList.Add(sector);
+                }
+            }
+            return Json(finalList, JsonRequestBehavior.AllowGet);
+        }
     }
 }

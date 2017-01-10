@@ -7,4 +7,13 @@
         }
         alert("trams loaded");
     });
+
+    $.get('/Remise/GetBlockedSectors', function(data) {
+        console.log(data);
+        for (var j = 0; j < data.length; j++) {
+            var id = "#sector" + data[j].Spoor.toString() + data[j].Nummer.toString();
+            $(id).addClass("blocked");
+        }
+        alert("sectors blocked");
+    });
 });
