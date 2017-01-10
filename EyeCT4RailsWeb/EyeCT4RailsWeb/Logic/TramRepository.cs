@@ -132,10 +132,10 @@ namespace EyeCT4RailsWeb.Logic
                             {
                                 FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
                             }
-                        }
-                        else if (convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer) == convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer) + 1)
-                        {
-                            FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
+                            else if (convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer) == convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer) + 1)
+                            {
+                                FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
+                            }
                         }
                         else
                         {
