@@ -53,7 +53,15 @@ namespace EyeCT4RailsWeb.Controllers
         
         public ActionResult Create()
         {
-            return View();
+            if(Session["username"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
     }
 }
