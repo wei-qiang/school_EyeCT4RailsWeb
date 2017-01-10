@@ -60,7 +60,7 @@ namespace EyeCT4RailsWeb.Controllers
             }
         }
 
-        public ActionResult Loguit()
+        public ActionResult Logout()
         {
             if (Session["gebruikersnaam"] != null || Session["functie"] != null)
             {
