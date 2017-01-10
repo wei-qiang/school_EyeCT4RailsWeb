@@ -53,7 +53,7 @@ namespace EyeCT4RailsWeb.Controllers
         
         public ActionResult Create()
         {
-            if(Session["username"] != null)
+            if(Session["gebruikersnaam"] != null)
             {
                 return View();
             }
