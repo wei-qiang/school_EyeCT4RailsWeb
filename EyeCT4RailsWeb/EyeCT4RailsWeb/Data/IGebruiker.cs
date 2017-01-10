@@ -11,5 +11,6 @@ namespace EyeCT4RailsWeb.Data
     {
         Gebruiker Verificatie(string gebruikersnaam, string wachtwoord);
         bool GebruikerToevoegen(string gebruikersnaam, string wachtwoord, string functie);
+        List<string> allFunctions();        
     }
 }

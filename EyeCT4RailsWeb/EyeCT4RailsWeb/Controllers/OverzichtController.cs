@@ -25,10 +25,19 @@ namespace EyeCT4RailsWeb.Controllers
         [HttpPost]
         public ActionResult ChangeStatus(string status = "Remise", int tram_id = 0, int Prioriteit = 0)
         {
+            Status s;
             if (tram_id > 0)
             {
                 Tram t = new Tram(tram_id);
-                Status s = (Status)Enum.Parse(typeof(Status), status);
+                try
+                { 
+                    s = (Status)Enum.Parse(typeof(Status), status);
+                }
+                catch (Exception e)
+                {
+                    TempData["Text"] = "Je hebt geen geldige status opgegeven.";
+                    return RedirectToAction("Index");                 
+                }
                 if(tramRepo.ChangeStatusTram(s, t, Prioriteit))
                 {
                     TempData["Text"] = "Het veranderen van de status is gelukt";

@@ -12,6 +12,7 @@ namespace EyeCT4RailsWeb.Controllers
     public class UserController : Controller
     {
         private GebruikerRepository GebruikerRepo = new GebruikerRepository(new GebruikerMSSQLContext());
+        private Gebruiker model = new Gebruiker();
         // GET: User
         public ActionResult Index()
         {
@@ -21,12 +22,14 @@ namespace EyeCT4RailsWeb.Controllers
         [HttpPost]
         public ActionResult Create(string gebruikersnaam, string wachtwoord, string functie)
         {
-            if(Session["username"] != null)
+            if(Session["gebruikersnaam"] != null)
             {
+                model.AllFunctiesFromGebruikers = GebruikerRepo.GetAllFunctions();
                 if (String.IsNullOrEmpty(gebruikersnaam) || String.IsNullOrEmpty(wachtwoord) || String.IsNullOrEmpty(functie))
                 {
                     ViewBag.error = "Je hebt niks ingevuld. Vul de velden in en probeer het opnieuw.";
-                    return View();
+                    
+                    return View(model);
                 }
                 bool adding = GebruikerRepo.AddUser(gebruikersnaam, wachtwoord, functie);
 
@@ -38,7 +41,7 @@ namespace EyeCT4RailsWeb.Controllers
                 else
                 {
                     ViewBag.error = "Er is iets fout gegaan. Probeer het opnieuw.";
-                    return View(); // De view die een foutmelding geeft en het opnieuw laat proberen.
+                    return View(model); // De view die een foutmelding geeft en het opnieuw laat proberen.
                 }
             }
             else
@@ -52,7 +55,8 @@ namespace EyeCT4RailsWeb.Controllers
         {
             if(Session["gebruikersnaam"] != null)
             {
-                return View();
+                model.AllFunctiesFromGebruikers = GebruikerRepo.GetAllFunctions();
+                return View(model);
             }
             else
             {
