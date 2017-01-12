@@ -75,7 +75,14 @@ namespace EyeCT4RailsWeb.Controllers
             if (tram_id > 0)
             {
                 Tram t = tramRepo.GetTramByID(tram_id);
-                tramRepo.LeaveRemise(t);
+                try
+                {
+                    tramRepo.LeaveRemise(t);
+                }
+                catch
+                {
+                    TempData["error"] = "Tram kan niet uitrijden!";
+                }
             }
             return RedirectToAction("Index");
         }
