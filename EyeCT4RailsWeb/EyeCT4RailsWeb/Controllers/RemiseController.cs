@@ -26,7 +26,9 @@ namespace EyeCT4RailsWeb.Controllers
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             dictionary.Add("tramList", trams);
             dictionary.Add("sectorList", sectors);
-            
+
+            ViewBag.Error = TempData["error"];
+
             return View();
         }
 
@@ -51,7 +53,17 @@ namespace EyeCT4RailsWeb.Controllers
 
                 if (tram != null && sector != null)
                 {
-                    tramRepo.ChangeTramSector(sector, tram);
+                    try
+                    {
+                        if (!tramRepo.ChangeTramSector(sector, tram))
+                        {
+                            TempData["error"] = "Tram kan niet verplaatst worden!";
+                        }
+                    }
+                    catch
+                    {
+                        TempData["error"] = "Tram kan niet verplaatst worden!";
+                    }
                 }
             }
             return RedirectToAction("Index");

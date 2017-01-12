@@ -16,6 +16,10 @@ namespace EyeCT4RailsWeb.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            if (Session["gebruikersnaam"] != null)
+            {
+                return RedirectToAction("Index", "Remise");
+            }
             return View();
         }
 
