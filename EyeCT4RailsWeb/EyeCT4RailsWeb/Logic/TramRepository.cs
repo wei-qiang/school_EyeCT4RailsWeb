@@ -114,9 +114,9 @@ namespace EyeCT4RailsWeb.Logic
                 {
                     Sector FreeSector = null;
                     //check of de tram op het spoor mag staan
-                    if (tram.Lijn != sector.Lijn)
+                    if (tram.Lijn != sector.Lijn && sector.Lijn != 0)
                     {
-                        //return false;
+                        return false;
                     }
                     //check of de tram al op een sector staat
                     if (tram.Sector != null)
@@ -125,17 +125,17 @@ namespace EyeCT4RailsWeb.Logic
                         FreeSector = GetReachableSectorOfSpoor(tram.Sector.Spoor);
 
                         //kijk of de tram de spoor kan verlaten
-                        if (FreeSector != null)
+                        if (FreeSector == null)
                         {
                             string maxspoorsector = Convert.ToString(tram.Sector.Spoor) + Convert.ToString(sectorRepository.GetSectorBySpoor(tram.Sector.Spoor).Count);
                             if (maxspoorsector == Convert.ToString(tram.Sector.Spoor) + Convert.ToString(tram.Sector.Nummer))
                             {
                                 FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
                             }
-                            else if (convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer) == convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer) + 1)
-                            {
-                                FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
-                            }
+                        }
+                        else if (convertSectorSpoorNummer(FreeSector.Spoor, FreeSector.Nummer) == convertSectorSpoorNummer(tram.Sector.Spoor, tram.Sector.Nummer) + 1)
+                        {
+                            FreeSector = GetReachableSectorOfSpoor(sector.Spoor);
                         }
                         else
                         {
