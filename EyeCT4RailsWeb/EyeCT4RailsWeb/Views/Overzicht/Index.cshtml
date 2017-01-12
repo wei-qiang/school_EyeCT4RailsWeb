@@ -8,20 +8,19 @@
 <br />
 <h3>Status aanpassen</h3>
 @ViewBag.ViewMessage
-<form method="post" action="/Overzicht/ChangeStatus">
+<form class="form-horizontal" method="post" action="/Overzicht/ChangeStatus">
     <label>Tram ID:</label>
-    <br />
-    <input type="number" name="tram_id" min="0" />
-    <br />
+    <input class="form-control" type="number" name="tram_id" min="0" />
     <label>Nieuwe status:</label>
-    <br />
-    <input type="text" name="status" />
-    <br />
+    <select class="form-control" name="status">
+        <option>Remise</option>
+        <option>Schoonmaak</option>
+        <option>Defect</option>
+        <option>Dienst</option>
+    </select>
     <label>Prioriteit:</label>
-    <br />
-    <input type="number" name="Prioriteit" min="0" />
-    <br />
-    <input type="submit" value="Tram inrijden" />
+    <input class="form-control" type="number" name="Prioriteit" min="0" />
+    <input class="btn btn-default" type="submit" value="Tram inrijden" />
 </form>
 <br />
 
