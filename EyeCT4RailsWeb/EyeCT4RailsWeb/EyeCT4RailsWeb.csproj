@@ -89,19 +89,70 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\FillRemiseTable.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OverzichtController.cs" />
+    <Compile Include="Controllers\RemiseController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Data\GebruikerMSSQLContext.cs" />
+    <Compile Include="Data\IGebruiker.cs" />
+    <Compile Include="Data\ISectorRepo.cs" />
+    <Compile Include="Data\ITramRepo.cs" />
+    <Compile Include="Data\SectorMSSQLContext.cs" />
+    <Compile Include="Data\TramMSSQLContext.cs" />
+    <Compile Include="Exceptions\RouteGeblokkeerdException.cs" />
+    <Compile Include="Exceptions\TramBestaatException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\GebruikerRepository.cs" />
+    <Compile Include="Logic\SectorRepository.cs" />
+    <Compile Include="Logic\TramRepository.cs" />
+    <Compile Include="Models\Dag.cs" />
+    <Compile Include="Models\Functie.cs" />
+    <Compile Include="Models\Gebruiker.cs" />
+    <Compile Include="Models\Rooster.cs" />
+    <Compile Include="Models\RoosterType.cs" />
+    <Compile Include="Models\Sector.cs" />
+    <Compile Include="Models\Spoor.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Tram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Remise\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\Shared\BlokkeerSpoorPartialView.cshtml" />
+    <Content Include="Views\Shared\VerplaatsTramPartialView.cshtml" />
+    <Content Include="Views\Shared\UitrijdenPartialView.cshtml" />
+    <Content Include="Views\Shared\InrijdenPartialView.cshtml" />
+    <Content Include="Views\Overzicht\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,8 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
